@@ -12,6 +12,7 @@ mars_web = {}
 
 # Latest News Headline and Body Scraping
 def scrape_news():
+
     url = 'https://mars.nasa.gov/news/'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -26,6 +27,7 @@ def scrape_news():
 
 # Featured Image Scraping
 def init_browser():
+
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
     return browser = Browser('chrome', **executable_path, headless=False)
 
@@ -65,7 +67,10 @@ def mars_facts_scrape():
 
     mars_df_html = mars_df.to_html()
 
-    return
+    mars_web['mars_df_html'] = mars_df_html
+
+    browser.quit()
+    return mars_web
 
 
 # Hemisphere Images Scraping
@@ -97,6 +102,6 @@ def hemishpere_scrape():
         hemisphere_image_urls.append(hem_dict)
     
     browser.quit()
-    return
+    return hemisphere_image_urls
 
 
