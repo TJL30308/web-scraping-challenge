@@ -29,7 +29,7 @@ def scrape_news():
 def init_browser():
 
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    return browser = Browser('chrome', **executable_path, headless=False)
+    return Browser('chrome', **executable_path, headless=False)
 
 def scrape_news():
 
