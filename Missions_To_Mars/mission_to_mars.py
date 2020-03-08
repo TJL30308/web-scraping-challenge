@@ -36,61 +36,67 @@ def scrape_news():
     browser.visit(url)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
+    image_url = soup.find('footer').find('a')['data-fancybox-href']
+    featured_image_url = f'https://www.jpl.nasa.gov{image_url}'
+   
+    mars_web['featured_image_url'] = featured_image_url
 
-
-image_url = soup.find('footer').find('a')['data-fancybox-href']
-
-featured_image_url = f'https://www.jpl.nasa.gov{image_url}'
-
-print(featured_image_url)
+    browser.quit()
+    return mars_web
 
 # Twitter Weather Scraping
-url = 'https://twitter.com/marswxreport?lang=en'
-browser.visit(url)
-time.sleep(1)
+    # url = 'https://twitter.com/marswxreport?lang=en'
+    # browser.visit(url)
+    # time.sleep(1)
 
-html = browser.html
-soup = BeautifulSoup(html, 'html.parser')
-# weather_tweet = soup.find()
-# weather_tweet
+    # html = browser.html
+    # soup = BeautifulSoup(html, 'html.parser')
+    # weather_tweet = soup.find()
+    # weather_tweet
 
 # Mars Facts Scraping
-url = 'https://space-facts.com/mars/'
+def mars_facts_scrape():
 
-mars_df = pd.read_html(url)[2]
-mars_df.columns = ['Description', 'Value']
-mars_df
+    url = 'https://space-facts.com/mars/'
 
-mars_df_html = mars_df.to_html()
-pprint(mars_df_html)
+    mars_df = pd.read_html(url)[2]
+    mars_df.columns = ['Description', 'Value']
+    mars_df
+
+    mars_df_html = mars_df.to_html()
+
+    return
 
 
 # Hemisphere Images Scraping
-url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-browser.visit(url)
-time.sleep(1)
+def hemishpere_scrape():
 
-html = browser.html
-soup = BeautifulSoup(html, 'html.parser')
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+    time.sleep(1)
 
-items = soup.find_all('div', class_='item')
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
 
-hemisphere_image_urls = []
+    items = soup.find_all('div', class_='item')
 
-for item in items:
+    hemisphere_image_urls = []
+
+    for item in items:
     
-    hem_dict = {}
+        hem_dict = {}
     
-    title = item.find('h3').text
-    hem_dict['title'] = title
+        title = item.find('h3').text
+        hem_dict['title'] = title
     
-    tag = item.find('a')['href']
-    img_url = url + tag
-    browser.visit(img_url)
+        tag = item.find('a')['href']
+        img_url = url + tag
+        browser.visit(img_url)
     
-    hem_dict['img_url'] = img_url
-    hemisphere_image_urls.append(hem_dict)
+        hem_dict['img_url'] = img_url
+        hemisphere_image_urls.append(hem_dict)
     
-print(hemisphere_image_urls)
+    browser.quit()
+    return
 
 
