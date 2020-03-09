@@ -19,11 +19,9 @@ def init_browser():
 # Latest News Headline and Body Scraping
 def scrape_news():
 
-    Browser = init_browser()
     url = 'https://mars.nasa.gov/news/'
-    Browser.visit(url)
-    html = Browser.html
-    soup = BeautifulSoup(html, 'html.parser')
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
     headline = soup.find('div', class_='content_title').find('a').text
     body = soup.find('div', class_='rollover_description_inner').text
 
