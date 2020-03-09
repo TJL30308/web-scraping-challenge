@@ -19,7 +19,6 @@ def init_browser():
 # Latest News Headline and Body Scraping
 def scrape_news():
 
-    browser = init_browser()
     url = 'https://mars.nasa.gov/news/'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -29,7 +28,6 @@ def scrape_news():
     mars_web['headline'] = headline
     mars_web['body'] = body
 
-    browser.quit()
     return mars_web
 
 # Featured Image Scraping
@@ -61,8 +59,9 @@ def scrape_img():
 # Mars Facts Scraping
 def mars_facts_scrape():
 
+    browser = init_browser()
     url = 'https://space-facts.com/mars/'
-
+    browser.visit(url)
     mars_df = pd.read_html(url)[2]
     mars_df.columns = ['Description', 'Value']
     mars_df
