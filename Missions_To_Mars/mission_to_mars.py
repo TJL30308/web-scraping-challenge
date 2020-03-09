@@ -10,9 +10,16 @@ import pandas as pd
 
 mars_web = {}
 
+# Initialize browser
+def init_browser():
+
+    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+    return Browser('chrome', **executable_path, headless=False)
+
 # Latest News Headline and Body Scraping
 def scrape_news():
 
+    browser = init_browser()
     url = 'https://mars.nasa.gov/news/'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -26,12 +33,7 @@ def scrape_news():
     return mars_web
 
 # Featured Image Scraping
-def init_browser():
-
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    return Browser('chrome', **executable_path, headless=False)
-
-def scrape_news():
+def scrape_img():
 
     browser = init_browser()
     url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'

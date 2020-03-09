@@ -9,16 +9,16 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
-    mars = db.mars_db.find()
+    mars = mongo.db.collection.find()
     return render_template("index.html" , mars=mars)
 
 @app.route("/scrape")
 def scrape():
-    mars = db.mars
-    mars_web = mission_to_mars.scrape_news()
+    news = mission_to_mars.scrape_news()
+    img_url = mission_to_mars.scrape_img()
     # mars_web = mission_to_mars.scrape_news()
-    mars_web = mission_to_mars.mars_facts_scrape()
-    mars_web = mission_to_mars.hemishpere_scrape()
+    mars_facts = mission_to_mars.mars_facts_scrape()
+    mars_hemispheres = mission_to_mars.hemishpere_scrape()
 
     mars.update({}, mars_web, upsert = True)
     return redirect("/", code=302)
