@@ -78,7 +78,7 @@ def mars_facts_scrape():
 def hemishpere_scrape():
 
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-    browser.visit(url)
+    Browser.visit(url)
     time.sleep(1)
 
     html = Browser.html
@@ -97,7 +97,7 @@ def hemishpere_scrape():
     
         tag = item.find('a')['href']
         img_url = url + tag
-        browser.visit(img_url)
+        Browser.visit(img_url)
     
         hem_dict['img_url'] = img_url
         hemisphere_image_urls.append(hem_dict)
