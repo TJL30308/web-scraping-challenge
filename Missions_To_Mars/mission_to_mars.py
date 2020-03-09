@@ -33,17 +33,17 @@ def scrape_news():
 # Featured Image Scraping
 def scrape_img():
 
-    browser = init_browser()
+    Browser = init_browser()
     url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
-    browser.visit(url)
-    html = browser.html
+    Browser.visit(url)
+    html = Browser.html
     soup = BeautifulSoup(html, 'html.parser')
     image_url = soup.find('footer').find('a')['data-fancybox-href']
     featured_image_url = f'https://www.jpl.nasa.gov{image_url}'
    
     mars_web['featured_image_url'] = featured_image_url
 
-    browser.quit()
+    Browser.quit()
     return mars_web
 
 # Twitter Weather Scraping
@@ -59,9 +59,9 @@ def scrape_img():
 # Mars Facts Scraping
 def mars_facts_scrape():
 
-    browser = init_browser()
+    Browser = init_browser()
     url = 'https://space-facts.com/mars/'
-    browser.visit(url)
+    Browser.visit(url)
     mars_df = pd.read_html(url)[2]
     mars_df.columns = ['Description', 'Value']
     mars_df
@@ -70,7 +70,7 @@ def mars_facts_scrape():
 
     mars_web['mars_df_html'] = mars_df_html
 
-    browser.quit()
+    Browser.quit()
     return mars_web
 
 
@@ -81,7 +81,7 @@ def hemishpere_scrape():
     browser.visit(url)
     time.sleep(1)
 
-    html = browser.html
+    html = Browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
     items = soup.find_all('div', class_='item')
@@ -102,7 +102,7 @@ def hemishpere_scrape():
         hem_dict['img_url'] = img_url
         hemisphere_image_urls.append(hem_dict)
     
-    browser.quit()
+    Browser.quit()
     return mars_web
 
 
