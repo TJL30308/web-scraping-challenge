@@ -41,13 +41,15 @@
 </br>
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="card">
             <h2>
                 Featured Mars Image
             </h2>
             <img src="https://www.jpl.nasa.gov/spaceimages/images/mediumsize/PIA23170_ip.jpg" alt="Mars Featured Image"></img>
         </div>
+        </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="card mt-6">
+            <div class="card">
                 <p class="card-text">
                     InSight sol 455 (2020-03-08) low -95.4ºC (-139.8ºF) high -13.0ºC (8.5ºF)
                     winds from the SSE at 6.0 m/s (13.5 mph) gusting to 20.7 m/s (46.2 mph)
@@ -61,7 +63,62 @@
     <div class = "row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <h2>Mars Facts</h2>
-                {{ mars.mars_df_html }}
+            <table border=1 class="dataframe">
+                <thead>
+                <tr style="text-align: right;">
+                <th></th>
+                <th>Description</th>
+                <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <th>0</th>
+                <td>Equatorial Diameter:</td>
+                <td>6,792 km</td>
+                </tr>
+                <tr>
+                <th>1</th>
+                <td>Polar Diameter:</td>
+                <td>6,752 km</td>
+                </tr>
+                <tr>
+                <th>2</th>
+                <td>Mass:</td>
+                <td>6.39 × 10^23 kg (0.11 Earths)</td>
+                </tr>
+                <tr>
+                <th>3</th>
+                <td>Moons:</td>
+                <td>2 (Phobos &amp; Deimos)</td>
+                </tr>
+                <tr>
+                <th>4</th>
+                <td>Orbit Distance:</td>
+                <td>227,943,824 km (1.38 AU)</td>
+                </tr>
+                <tr>
+                <th>5</th>
+                <td>Orbit Period:</td>
+                <td>687 days (1.9 years)</td>
+                </tr>
+                <tr>
+                <th>6</th>
+                <td>Surface Temperature:</td>
+                <td>-87 to -5 °C</td>
+                </tr>
+                <tr>
+                <th>7</th>
+                <td>First Record:</td>
+                <td>2nd millennium BC</td>
+                </tr>
+                <tr>
+                <th>8</th>
+                <td>Recorded By:</td>
+                <td>Egyptian astronomers</td>
+                </tr>
+                </tbody>
+                </table>
         </div>  
     </div>
 </br>
@@ -72,6 +129,23 @@
                 <img src="{{ item.img_url }}">
             {% endfor %}
         </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            {% for item in mars.hemisphere_image_urls %}
+                <img src="{{ item.img_url }}">
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                {% for item in mars.hemisphere_image_urls %}
+                    <img src="{{ item.img_url }}">
+                {% endfor %}
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                {% for item in mars.hemisphere_image_urls %}
+                    <img src="{{ item.img_url }}">
+                {% endfor %}
+            </div>
     </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
