@@ -102,7 +102,8 @@ def hemishpere_scrape():
     
         hem_dict['img_url'] = img_url
         hemisphere_image_urls.append(hem_dict)
-    
+        mars_web['hemisphere_image_urls'] = hem_dict
+
     Browser.quit()
     return mars_web
 
