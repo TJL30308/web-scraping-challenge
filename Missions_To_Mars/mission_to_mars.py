@@ -66,7 +66,7 @@ def mars_facts_scrape():
     mars_df.columns = ['Description', 'Value']
     mars_df
 
-    mars_df_html = mars_df.to_html
+    mars_df_html = mars_df.to_html(table_id="html_tbl_css",justify='left',index=False)
 
     mars_web['mars_df_html'] = mars_df_html
 
