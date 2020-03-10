@@ -17,7 +17,7 @@ def scrape():
     mars = mongo.db.mars_web
     mars_web = mission_to_mars.scrape_news()
     mars_web = mission_to_mars.scrape_img()
-    # mars_web = mission_to_mars.scrape_news()
+    # mars_web = mission_to_mars.srape_twitter()
     mars_web = mission_to_mars.mars_facts_scrape()
     mars_web = mission_to_mars.hemishpere_scrape()
 

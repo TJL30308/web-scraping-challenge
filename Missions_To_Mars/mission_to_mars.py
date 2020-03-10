@@ -92,18 +92,19 @@ def hemishpere_scrape():
     for item in items:
     
         hem_dict = {}
-    
         title = item.find('h3').text
         hem_dict['title'] = title
-    
-        tag = item.find('a')['href']
-        img_url = url + tag
-        Browser.visit(img_url)
-    
+        partial_img_url = item.find('a', class_='itemLink product-item')['href']
+        hemispheres_main_url = 'https://astrogeology.usgs.gov'
+        Browser.visit(hemispheres_main_url + partial_img_url)
+        partial_img_html = Browser.html
+        soup = BeautifulSoup(partial_img_html, 'html.parser')
+        img_url = hemispheres_main_url + soup.find('img', class_='wide-image')['src']
         hem_dict['img_url'] = img_url
         hemisphere_image_urls.append(hem_dict)
-        mars_web['hemisphere_image_urls'] = hem_dict
-
+    
+    mars_web['hemisphere_image_urls'] = hem_dict
+    
     Browser.quit()
     return mars_web
 
