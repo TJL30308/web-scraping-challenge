@@ -102,8 +102,7 @@ def hemishpere_scrape():
         img_url = hemispheres_main_url + soup.find('img', class_='wide-image')['src']
         hem_dict['img_url'] = img_url
         hemisphere_image_urls.append(hem_dict)
-    
-    mars_web['hemisphere_image_urls'] = hem_dict
+        mars_web['hemisphere_image_urls'] = hem_dict
     
     Browser.quit()
     return mars_web
